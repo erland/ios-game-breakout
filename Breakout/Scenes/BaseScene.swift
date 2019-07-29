@@ -17,6 +17,12 @@ class BaseScene : SKScene {
         self.lastUpdateTime = 0
     }
     
+    func updateComponents(deltaTime: TimeInterval) {
+        for entity in Game.entityManager(forScene: self).entities {
+            entity.update(deltaTime: deltaTime)
+        }
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -28,10 +34,7 @@ class BaseScene : SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
         
-        // Update entities
-        for entity in Game.entityManager(forScene: self).entities {
-            entity.update(deltaTime: dt)
-        }
+        updateComponents(deltaTime: dt)
         
         self.lastUpdateTime = currentTime
     }

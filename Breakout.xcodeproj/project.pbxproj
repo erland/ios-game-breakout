@@ -34,8 +34,13 @@
 		DCEAA42822ED784C00DD49EE /* HorizontalInputComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42722ED784C00DD49EE /* HorizontalInputComponent.swift */; };
 		DCEAA42A22ED8E4D00DD49EE /* KillComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42922ED8E4D00DD49EE /* KillComponent.swift */; };
 		DCEAA42C22ED8F8F00DD49EE /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42B22ED8F8F00DD49EE /* PhysicsComponent.swift */; };
-		DCEAA42E22ED92E800DD49EE /* BallComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42D22ED92E800DD49EE /* BallComponent.swift */; };
 		DCEAA43022EDC63F00DD49EE /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42F22EDC63F00DD49EE /* GameOverScene.swift */; };
+		DCEAA43222EED5A100DD49EE /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43122EED5A100DD49EE /* CollisionComponent.swift */; };
+		DCEAA43822EEFB7200DD49EE /* VisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43722EEFB7200DD49EE /* VisualComponent.swift */; };
+		DCEAA43A22EF5FD100DD49EE /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43922EF5FD100DD49EE /* BaseComponent.swift */; };
+		DCEAA43C22EF63A900DD49EE /* PositionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43B22EF63A900DD49EE /* PositionComponent.swift */; };
+		DCEAA43E22EF646100DD49EE /* VelocityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43D22EF646100DD49EE /* VelocityComponent.swift */; };
+		DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +73,13 @@
 		DCEAA42722ED784C00DD49EE /* HorizontalInputComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalInputComponent.swift; sourceTree = "<group>"; };
 		DCEAA42922ED8E4D00DD49EE /* KillComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillComponent.swift; sourceTree = "<group>"; };
 		DCEAA42B22ED8F8F00DD49EE /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
-		DCEAA42D22ED92E800DD49EE /* BallComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallComponent.swift; sourceTree = "<group>"; };
 		DCEAA42F22EDC63F00DD49EE /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		DCEAA43122EED5A100DD49EE /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
+		DCEAA43722EEFB7200DD49EE /* VisualComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualComponent.swift; sourceTree = "<group>"; };
+		DCEAA43922EF5FD100DD49EE /* BaseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
+		DCEAA43B22EF63A900DD49EE /* PositionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionComponent.swift; sourceTree = "<group>"; };
+		DCEAA43D22EF646100DD49EE /* VelocityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityComponent.swift; sourceTree = "<group>"; };
+		DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,11 +144,16 @@
 		DCEAA41422EB675400DD49EE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DCEAA43922EF5FD100DD49EE /* BaseComponent.swift */,
 				DCEAA41522EB6BA800DD49EE /* TapEventComponent.swift */,
 				DCEAA42722ED784C00DD49EE /* HorizontalInputComponent.swift */,
 				DCEAA42922ED8E4D00DD49EE /* KillComponent.swift */,
 				DCEAA42B22ED8F8F00DD49EE /* PhysicsComponent.swift */,
-				DCEAA42D22ED92E800DD49EE /* BallComponent.swift */,
+				DCEAA43122EED5A100DD49EE /* CollisionComponent.swift */,
+				DCEAA43722EEFB7200DD49EE /* VisualComponent.swift */,
+				DCEAA43B22EF63A900DD49EE /* PositionComponent.swift */,
+				DCEAA43D22EF646100DD49EE /* VelocityComponent.swift */,
+				DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -246,8 +261,11 @@
 			files = (
 				DC41F69222E845640035401A /* PlayingScene.swift in Sources */,
 				DCEAA40622EAF7A000DD49EE /* PauseState.swift in Sources */,
+				DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */,
 				DCEAA41A22EC27FB00DD49EE /* EntityManager.swift in Sources */,
 				DCEAA41622EB6BA800DD49EE /* TapEventComponent.swift in Sources */,
+				DCEAA43E22EF646100DD49EE /* VelocityComponent.swift in Sources */,
+				DCEAA43222EED5A100DD49EE /* CollisionComponent.swift in Sources */,
 				DCEAA40C22EAFC9E00DD49EE /* SceneController.swift in Sources */,
 				DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */,
 				DCEAA42522EC48C900DD49EE /* BaseScene.swift in Sources */,
@@ -255,10 +273,12 @@
 				DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */,
 				DCEAA41E22EC35B700DD49EE /* PauseScene.swift in Sources */,
 				DCEAA41822EC25D300DD49EE /* Game.swift in Sources */,
+				DCEAA43A22EF5FD100DD49EE /* BaseComponent.swift in Sources */,
 				DCEAA41C22EC315B00DD49EE /* TitleScene.swift in Sources */,
-				DCEAA42E22ED92E800DD49EE /* BallComponent.swift in Sources */,
+				DCEAA43822EEFB7200DD49EE /* VisualComponent.swift in Sources */,
 				DC41F69422E845640035401A /* GameViewController.swift in Sources */,
 				DCEAA42C22ED8F8F00DD49EE /* PhysicsComponent.swift in Sources */,
+				DCEAA43C22EF63A900DD49EE /* PositionComponent.swift in Sources */,
 				DCEAA42A22ED8E4D00DD49EE /* KillComponent.swift in Sources */,
 				DCEAA43022EDC63F00DD49EE /* GameOverScene.swift in Sources */,
 				DCEAA40822EAF7BB00DD49EE /* GameOverState.swift in Sources */,

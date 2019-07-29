@@ -21,4 +21,8 @@ class PauseScene: BaseScene {
         print("Scene did load: \(type(of: self))")
     }
     
+    override func updateComponents(deltaTime: TimeInterval) {
+        // Update components
+        Game.system(for: TapEventComponent.self)?.update(deltaTime: deltaTime)
+    }
 }

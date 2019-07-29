@@ -34,82 +34,80 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         if let node = childNode(withName: "//VoidWall") {
             let entity = Game.entityManager(forScene: self).entity(forNode: node)
             entity.addComponent(KillComponent())
-            if node.physicsBody == nil {
-                node.physicsBody = SKPhysicsBody(rectangleOf: node.frame.size)
-                node.physicsBody?.affectedByGravity = false
-                node.physicsBody?.isDynamic = false
-                node.physicsBody?.friction = 0.0
-                node.physicsBody?.restitution = 1.0
-                node.physicsBody?.linearDamping = 0.0
-                node.physicsBody?.angularDamping = 0.0
-                node.physicsBody?.collisionBitMask = 1
-                node.physicsBody?.categoryBitMask = 5
-                node.physicsBody?.contactTestBitMask = 4
-            }
+
+            entity.addComponent(PhysicsComponent(physicsBody: SKPhysicsBody(rectangleOf: node.frame.size),
+                                                 isDynamic: false,
+                                                 collisionBitMask: 1,
+                                                 categoryBitMask: 5,
+                                                 contactTestBitMask: 4))
+
+            entity.addComponent(CollisionComponent())
         }
         
         for name in ["//LeftWall", "//RightWall", "//UpperWall", "//Bat", "//BatLeft", "//BatRight"] {
             if let node = childNode(withName: name) {
                 let entity = Game.entityManager(forScene: self).entity(forNode: node)
-                entity.addComponent(PhysicsComponent())
-                let node = entity.component(ofType: GKSKNodeComponent.self)!.node
-                if node.physicsBody == nil {
-                    node.physicsBody = SKPhysicsBody(rectangleOf: node.frame.size)
-                    node.physicsBody?.affectedByGravity = false
-                    node.physicsBody?.isDynamic = false
-                    node.physicsBody?.friction = 0.0
-                    node.physicsBody?.restitution = 1.0
-                    node.physicsBody?.linearDamping = 0.0
-                    node.physicsBody?.angularDamping = 0.0
-                    node.physicsBody?.collisionBitMask = 2
-                    node.physicsBody?.categoryBitMask = 6
-                    node.physicsBody?.contactTestBitMask = 4
-                }
+                let node = entity.component(ofType: VisualComponent.self)!.node
+                
+                entity.addComponent(PhysicsComponent(physicsBody: SKPhysicsBody(rectangleOf: node.frame.size),
+                                                     isDynamic: false,
+                                                     collisionBitMask: 2,
+                                                     categoryBitMask: 6,
+                                                     contactTestBitMask: 4))
             }
         }
         if let ballNode = childNode(withName: "//Ball") {
             let entity = Game.entityManager(forScene: self).entity(forNode: ballNode)
             if let batNode = childNode(withName: "//Bat") {
-                let component = BallComponent()
-                component.position = CGPoint(x: batNode.position.x, y: batNode.position.y+80)
-                ballNode.position = component.position
-                if ballNode.physicsBody == nil {
-                    ballNode.physicsBody = SKPhysicsBody(circleOfRadius: ballNode.frame.width/2)
-                    ballNode.physicsBody?.affectedByGravity = false
-                    ballNode.physicsBody?.isDynamic = true
-                    ballNode.physicsBody?.friction = 0.0
-                    ballNode.physicsBody?.restitution = 1.0
-                    ballNode.physicsBody?.linearDamping = 0.0
-                    ballNode.physicsBody?.angularDamping = 0.0
-                    ballNode.physicsBody?.mass = 1.0
-                    ballNode.physicsBody?.collisionBitMask = 4
-                    ballNode.physicsBody?.categoryBitMask = 3
-                    ballNode.physicsBody?.contactTestBitMask = 3
-                }
-                ballNode.physicsBody?.applyImpulse(CGVector(dx: 200, dy: 200))
-                entity.addComponent(component)
+                let physicsBody = SKPhysicsBody(circleOfRadius: ballNode.frame.width/2)
+                
+                entity.addComponent(PhysicsComponent(physicsBody: physicsBody,
+                                                     isDynamic: true,
+                                                     collisionBitMask: 4,
+                                                     categoryBitMask: 3,
+                                                     contactTestBitMask: 3))
+
+                entity.addComponent(PositionComponent(position: CGPoint(x: batNode.position.x,
+                                                                        y: batNode.position.y+80)))
+                entity.addComponent(VelocityComponent(velocity: CGVector(dx: 200,
+                                                                         dy: 200)))
+                entity.addComponent(HealthComponent(health: 1))
             }
         }
         physicsWorld.contactDelegate = self
         
         print("Scene did load: \(type(of: self))")
     }
-    func isBallEntity(_ node: SKNode?) -> Bool {
-        return node != nil && node!.entity != nil && node!.entity!.component(ofType: BallComponent.self) != nil
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        if let party = Game.entityManager(forScene: self).component(forNode: contact.bodyA.node, ofType: CollisionComponent.self) {
+            party.addCollision(with: contact.bodyB.node?.entity)
+        }
+        
+        if let party = Game.entityManager(forScene: self).component(forNode: contact.bodyB.node, ofType: CollisionComponent.self) {
+            party.addCollision(with: contact.bodyA.node?.entity)
+        }
+        
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        var ballEntity : GKEntity?
-        var otherEntity : GKEntity?
-        if isBallEntity(contact.bodyA.node) {
-            ballEntity = contact.bodyA.node!.entity!
-            otherEntity = contact.bodyB.node!.entity!
-        }else if isBallEntity(contact.bodyB.node) {
-            ballEntity = contact.bodyB.node!.entity!
-            otherEntity = contact.bodyA.node!.entity!
-        }
-        if ballEntity != nil && otherEntity != nil {
-            if otherEntity!.component(ofType: KillComponent.self) != nil {
+    override func updateComponents(deltaTime: TimeInterval) {
+        // Update components
+        Game.system(for: TapEventComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: HorizontalInputComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: KillComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: PositionComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: VelocityComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: CollisionComponent.self)?.update(deltaTime: deltaTime)
+        if let healthComponents = Game.system(for: HealthComponent.self)?.components {
+            var dead = true
+            for component in healthComponents {
+                if component.health>0 {
+                    dead = false
+                    break
+                }
+            }
+            if dead {
                 Game.stateMachine.enter(GameOverState.self)
             }
         }

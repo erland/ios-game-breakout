@@ -18,12 +18,18 @@ class EntityManager {
     func removeEntity(_ entity: GKEntity) {
         if let index = entities.index(of:entity) {
             entities.remove(at: index)
+            for component in entity.components {
+                entity.removeComponent(ofType: type(of: component))
+            }
         }
     }
     
-    func component<T : GKComponent>(forNode node: SKNode, ofType: T.Type) -> T? {
+    func component<T : GKComponent>(forNode node: SKNode?, ofType: T.Type) -> T? {
+        guard let node = node else {
+            return nil
+        }
         for entity in entities {
-            if let nodeComponent = entity.component(ofType: GKSKNodeComponent.self) {
+            if let nodeComponent = entity.component(ofType: VisualComponent.self) ?? entity.component(ofType: GKSKNodeComponent.self) {
                 if nodeComponent.node === node {
                     if let component = entity.component(ofType: ofType) {
                         return component
@@ -36,14 +42,14 @@ class EntityManager {
 
     func entity(forNode node: SKNode) -> GKEntity {
         for entity in entities {
-            if let nodeComponent = entity.component(ofType: GKSKNodeComponent.self) {
+            if let nodeComponent = entity.component(ofType: VisualComponent.self) ?? entity.component(ofType: GKSKNodeComponent.self) {
                 if nodeComponent.node === node {
                     return entity
                 }
             }
         }
         let entity = GKEntity()
-        entity.addComponent(GKSKNodeComponent(node: node))
+        entity.addComponent(VisualComponent(node: node))
         addEntity(entity)
         return entity
     }

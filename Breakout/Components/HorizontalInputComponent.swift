@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-class HorizontalInputComponent : GKComponent {
+class HorizontalInputComponent : BaseComponent {
     @GKInspectable
     var dragAreaWidth : CGFloat = 0
 
@@ -20,7 +20,7 @@ class HorizontalInputComponent : GKComponent {
     
     override func update(deltaTime seconds: TimeInterval) {
         if let position = dragPosition {
-            if let nodeComponent = entity?.component(ofType: GKSKNodeComponent.self) {
+            if let nodeComponent = entity?.component(ofType: VisualComponent.self) {
                 nodeComponent.node.position.x = position
             }
         }

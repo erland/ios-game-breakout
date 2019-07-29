@@ -128,7 +128,7 @@ class GameViewController: UIViewController, SceneController {
     
     func horizontalInputComponentAtLocation(touchLocation: CGPoint, scene: SKScene) -> HorizontalInputComponent? {
         for component in Game.entityManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
-            if let nodeComponent = component.entity!.component(ofType: GKSKNodeComponent.self) {
+            if let nodeComponent = component.entity!.component(ofType: VisualComponent.self) {
                 if CGRect(x: nodeComponent.node.position.x-component.dragAreaWidth/2,
                           y: nodeComponent.node.position.y-component.dragAreaHeight/2,
                           width: component.dragAreaWidth,

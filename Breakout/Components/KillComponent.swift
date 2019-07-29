@@ -8,6 +8,15 @@
 
 import GameplayKit
 
-class KillComponent : GKComponent {
+class KillComponent : BaseComponent {
     
+    override func update(deltaTime seconds: TimeInterval) {
+        if let collisions = entity?.component(ofType: CollisionComponent.self) {
+            for collidingEntity in collisions.collisions {
+                if let healthComponent = collidingEntity.component(ofType: HealthComponent.self) {
+                    healthComponent.decreaseHealth()
+                }
+            }
+        }
+    }
 }

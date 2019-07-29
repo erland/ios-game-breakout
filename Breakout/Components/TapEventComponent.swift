@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-class TapEventComponent : GKComponent {
+class TapEventComponent : BaseComponent {
     var tapped: Bool = false
     var handler: () -> ()
     
