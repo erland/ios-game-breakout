@@ -26,7 +26,8 @@ class PhysicsComponent : BaseComponent {
         physicsBody.collisionBitMask = collisionBitMask
         physicsBody.categoryBitMask = categoryBitMask
         physicsBody.contactTestBitMask = contactTestBitMask
-        
+
+        physicsBody.allowsRotation = false
         physicsBody.affectedByGravity = false
         physicsBody.friction = 0.0
         physicsBody.restitution = 1.0
