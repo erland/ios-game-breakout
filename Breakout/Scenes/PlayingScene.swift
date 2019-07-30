@@ -65,13 +65,29 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
                                                      isDynamic: true,
                                                      collisionBitMask: 4,
                                                      categoryBitMask: 3,
-                                                     contactTestBitMask: 3))
+                                                     contactTestBitMask: 11))
 
                 entity.addComponent(PositionComponent(position: CGPoint(x: batNode.position.x,
                                                                         y: batNode.position.y+80)))
                 entity.addComponent(VelocityComponent(velocity: CGVector(dx: 200,
                                                                          dy: 200)))
                 entity.addComponent(HealthComponent(health: 1))
+                entity.addComponent(DamagingComponent())
+            }
+        }
+        for y in 0..<3 {
+            for x in 0..<8 {
+                let brickNode = SKSpriteNode(texture: nil, color: ((y+x)%2 == 1) ? .red : .blue, size: CGSize(width: 56, height: 26))
+                addChild(brickNode)
+                let entity = Game.entityManager(forScene: self).entity(forNode: brickNode)
+                entity.addComponent(PhysicsComponent(physicsBody: SKPhysicsBody(rectangleOf: brickNode.frame.size),
+                                                     isDynamic: false,
+                                                     collisionBitMask: 8,
+                                                     categoryBitMask: 12,
+                                                     contactTestBitMask: 4))
+                entity.addComponent(PositionComponent(position: CGPoint(x: -240+x*60, y: 240-y*30)))
+                entity.addComponent(CollisionComponent())
+                entity.addComponent(KillableComponent(entityManager: Game.entityManager(forScene: self)))
             }
         }
         physicsWorld.contactDelegate = self
@@ -96,6 +112,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         Game.system(for: TapEventComponent.self)?.update(deltaTime: deltaTime)
         Game.system(for: HorizontalInputComponent.self)?.update(deltaTime: deltaTime)
         Game.system(for: KillComponent.self)?.update(deltaTime: deltaTime)
+        Game.system(for: KillableComponent.self)?.update(deltaTime: deltaTime)
         Game.system(for: PositionComponent.self)?.update(deltaTime: deltaTime)
         Game.system(for: VelocityComponent.self)?.update(deltaTime: deltaTime)
         Game.system(for: CollisionComponent.self)?.update(deltaTime: deltaTime)
@@ -111,5 +128,6 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
                 Game.stateMachine.enter(GameOverState.self)
             }
         }
+        Game.entityManager(forScene: self).update(deltaTime: deltaTime)
     }
 }

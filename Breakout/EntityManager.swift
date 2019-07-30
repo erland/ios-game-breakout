@@ -10,9 +10,14 @@ import GameplayKit
 
 class EntityManager {
     var entities : [GKEntity] = []
+    var toBeRemoved : [GKEntity] = []
     
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
+    }
+    
+    func scheduleRemoveEntity(_ entity: GKEntity) {
+        toBeRemoved.append(entity)
     }
     
     func removeEntity(_ entity: GKEntity) {
@@ -62,5 +67,12 @@ class EntityManager {
             }
         }
         return result
+    }
+    
+    func update(deltaTime: TimeInterval) {
+        for entity in toBeRemoved {
+            removeEntity(entity)
+        }
+        toBeRemoved.removeAll()
     }
 }
