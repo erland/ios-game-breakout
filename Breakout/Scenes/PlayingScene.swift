@@ -69,7 +69,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
 
                 entity.addComponent(PositionComponent(position: CGPoint(x: batNode.position.x,
                                                                         y: batNode.position.y+80)))
-                entity.addComponent(VelocityComponent(velocity: CGVector(dx: 200,
+                entity.addComponent(VelocityComponent(velocity: CGVector(dx: 0,
                                                                          dy: 200)))
                 entity.addComponent(HealthComponent(health: 1))
                 entity.addComponent(DamagingComponent())
@@ -125,6 +125,10 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
             }
         }
         if dead {
+            Game.stateMachine.enter(GameOverState.self)
+        }
+        let killableComponents = Game.entityManager(forScene: self).system(for: KillableComponent.self).components
+        if killableComponents.count == 0 {
             Game.stateMachine.enter(GameOverState.self)
         }
         Game.entityManager(forScene: self).update(deltaTime: deltaTime)

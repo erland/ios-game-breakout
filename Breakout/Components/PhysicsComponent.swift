@@ -23,6 +23,7 @@ class PhysicsComponent : BaseComponent {
                      contactTestBitMask: UInt32) {
         self.init(physicsBody: physicsBody)
         physicsBody.isDynamic = isDynamic
+        physicsBody.usesPreciseCollisionDetection = true
         physicsBody.collisionBitMask = collisionBitMask
         physicsBody.categoryBitMask = categoryBitMask
         physicsBody.contactTestBitMask = contactTestBitMask
