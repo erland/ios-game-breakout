@@ -109,24 +109,23 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
     
     override func updateComponents(deltaTime: TimeInterval) {
         // Update components
-        Game.system(for: TapEventComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: HorizontalInputComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: KillComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: KillableComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: PositionComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: VelocityComponent.self)?.update(deltaTime: deltaTime)
-        Game.system(for: CollisionComponent.self)?.update(deltaTime: deltaTime)
-        if let healthComponents = Game.system(for: HealthComponent.self)?.components {
-            var dead = true
-            for component in healthComponents {
-                if component.health>0 {
-                    dead = false
-                    break
-                }
+        Game.entityManager(forScene: self).system(for: TapEventComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: HorizontalInputComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: KillComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: KillableComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: PositionComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: VelocityComponent.self).update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: CollisionComponent.self).update(deltaTime: deltaTime)
+        let healthComponents = Game.entityManager(forScene: self).system(for: HealthComponent.self).components
+        var dead = true
+        for component in healthComponents {
+            if component.health>0 {
+                dead = false
+                break
             }
-            if dead {
-                Game.stateMachine.enter(GameOverState.self)
-            }
+        }
+        if dead {
+            Game.stateMachine.enter(GameOverState.self)
         }
         Game.entityManager(forScene: self).update(deltaTime: deltaTime)
     }

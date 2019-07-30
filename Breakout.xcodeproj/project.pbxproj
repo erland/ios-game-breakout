@@ -43,6 +43,7 @@
 		DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */; };
 		DCEAA44222F01BAF00DD49EE /* KillableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA44122F01BAF00DD49EE /* KillableComponent.swift */; };
 		DCEAA44422F01D6400DD49EE /* DamagingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA44322F01D6400DD49EE /* DamagingComponent.swift */; };
+		DCEAA44622F0394000DD49EE /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA44522F0394000DD49EE /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
 		DCEAA44122F01BAF00DD49EE /* KillableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillableComponent.swift; sourceTree = "<group>"; };
 		DCEAA44322F01D6400DD49EE /* DamagingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamagingComponent.swift; sourceTree = "<group>"; };
+		DCEAA44522F0394000DD49EE /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				DCEAA40B22EAFC9E00DD49EE /* SceneController.swift */,
 				DCEAA41722EC25D300DD49EE /* Game.swift */,
 				DCEAA41922EC27FB00DD49EE /* EntityManager.swift */,
+				DCEAA44522F0394000DD49EE /* Entity.swift */,
 			);
 			path = Breakout;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC41F69222E845640035401A /* PlayingScene.swift in Sources */,
+				DCEAA44622F0394000DD49EE /* Entity.swift in Sources */,
 				DCEAA40622EAF7A000DD49EE /* PauseState.swift in Sources */,
 				DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */,
 				DCEAA41A22EC27FB00DD49EE /* EntityManager.swift in Sources */,

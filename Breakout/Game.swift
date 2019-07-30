@@ -14,7 +14,6 @@ class Game {
     static var sceneController : SceneController!
     static var stateMachine: GameStateMachine!
     static var entityManagers: [SKScene:EntityManager] = [:]
-    static var systems : [GKComponentSystem<GKComponent>] = []
     
     init(sceneController: SceneController) {
         Game.stateMachine = GameStateMachine(sceneController: sceneController)
@@ -30,14 +29,4 @@ class Game {
         }
     }
     
-    static func system<T : GKComponent>(for componentType: T.Type) -> GKComponentSystem<T>? {
-        for system in systems {
-            if system.componentClass == componentType {
-                return system as? GKComponentSystem<T>
-            }
-        }
-        let system = GKComponentSystem(componentClass: componentType)
-        systems.append(system)
-        return system as? GKComponentSystem<T>
-    }
 }

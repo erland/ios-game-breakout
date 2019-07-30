@@ -23,6 +23,6 @@ class PauseScene: BaseScene {
     
     override func updateComponents(deltaTime: TimeInterval) {
         // Update components
-        Game.system(for: TapEventComponent.self)?.update(deltaTime: deltaTime)
+        Game.entityManager(forScene: self).system(for: TapEventComponent.self).update(deltaTime: deltaTime)
     }
 }

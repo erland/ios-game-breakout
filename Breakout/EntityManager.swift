@@ -10,14 +10,15 @@ import GameplayKit
 
 class EntityManager {
     var entities : [GKEntity] = []
-    var toBeRemoved : [GKEntity] = []
-    
+    var __entitiesToBeRemoved : [GKEntity] = []
+    var systems : [GKComponentSystem<GKComponent>] = []
+
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
     }
     
     func scheduleRemoveEntity(_ entity: GKEntity) {
-        toBeRemoved.append(entity)
+        __entitiesToBeRemoved.append(entity)
     }
     
     func removeEntity(_ entity: GKEntity) {
@@ -29,6 +30,25 @@ class EntityManager {
         }
     }
     
+    func addComponentToSystems<T: GKComponent>(_ component: T) {
+        system(for: type(of: component)).addComponent(component)
+    }
+    
+    func removeComponentFromSystems<T: GKComponent>(for componentClass: T.Type, in entity: GKEntity) {
+        system(for: componentClass).removeComponent(foundIn: entity)
+    }
+    
+    func system<T : GKComponent>(for componentType: T.Type) -> GKComponentSystem<T> {
+        for system in systems {
+            if system.componentClass == componentType {
+                return system as! GKComponentSystem<T>
+            }
+        }
+        let system = GKComponentSystem(componentClass: componentType)
+        systems.append(system)
+        return system as! GKComponentSystem<T>
+    }
+
     func component<T : GKComponent>(forNode node: SKNode?, ofType: T.Type) -> T? {
         guard let node = node else {
             return nil
@@ -53,7 +73,7 @@ class EntityManager {
                 }
             }
         }
-        let entity = GKEntity()
+        let entity = Entity(managedBy: self)
         entity.addComponent(VisualComponent(node: node))
         addEntity(entity)
         return entity
@@ -70,9 +90,9 @@ class EntityManager {
     }
     
     func update(deltaTime: TimeInterval) {
-        for entity in toBeRemoved {
+        for entity in __entitiesToBeRemoved {
             removeEntity(entity)
         }
-        toBeRemoved.removeAll()
+        __entitiesToBeRemoved.removeAll()
     }
 }

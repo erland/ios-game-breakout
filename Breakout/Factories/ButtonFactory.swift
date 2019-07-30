@@ -17,7 +17,7 @@ class ButtonFactory {
     
     func addButton(withName name: String, _ handler: @escaping () -> ()) {
         if let node = scene.childNode(withName: name) {
-            let entity = GKEntity()
+            let entity = Entity(managedBy: Game.entityManager(forScene: scene))
             entity.addComponent(GKSKNodeComponent(node: node))
             entity.addComponent(TapEventComponent(handler: handler))
             Game.entityManager(forScene: scene).addEntity(entity)
@@ -25,7 +25,7 @@ class ButtonFactory {
     }
 
     func addSceneButton(_ handler: @escaping () -> ()) {
-        let entity = GKEntity()
+        let entity = Entity(managedBy: Game.entityManager(forScene: scene))
         entity.addComponent(GKSKNodeComponent(node: scene))
         entity.addComponent(TapEventComponent(handler: handler))
         Game.entityManager(forScene: scene).addEntity(entity)
