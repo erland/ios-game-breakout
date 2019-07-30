@@ -14,6 +14,7 @@ class GameStateMachine : GKStateMachine {
         super.init(states: [TitleState(sceneController: sceneController),
                             PlayingState(sceneController: sceneController),
                             PauseState(sceneController: sceneController),
+                            CompletedState(sceneController: sceneController),
                             GameOverState(sceneController: sceneController)])
     }
     

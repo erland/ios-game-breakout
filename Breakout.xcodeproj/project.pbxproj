@@ -14,6 +14,9 @@
 		DC41F69722E845640035401A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC41F69522E845640035401A /* Main.storyboard */; };
 		DC41F69922E845660035401A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC41F69822E845660035401A /* Assets.xcassets */; };
 		DC41F69C22E845660035401A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC41F69A22E845660035401A /* LaunchScreen.storyboard */; };
+		DC8DF8D622F0A7000046592E /* CompletedScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DC8DF8D522F0A7000046592E /* CompletedScene.sks */; };
+		DC8DF8D822F0A7540046592E /* CompletedScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D722F0A7540046592E /* CompletedScene.swift */; };
+		DC8DF8DA22F0A79B0046592E /* CompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D922F0A79B0046592E /* CompletedState.swift */; };
 		DCEAA3FC22EAEF4900DD49EE /* BaseLevel.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */; };
 		DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */; };
 		DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA40122EAF6C100DD49EE /* TitleState.swift */; };
@@ -56,6 +59,9 @@
 		DC41F69822E845660035401A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC41F69B22E845660035401A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC41F69D22E845660035401A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC8DF8D522F0A7000046592E /* CompletedScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CompletedScene.sks; sourceTree = "<group>"; };
+		DC8DF8D722F0A7540046592E /* CompletedScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedScene.swift; sourceTree = "<group>"; };
+		DC8DF8D922F0A79B0046592E /* CompletedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedState.swift; sourceTree = "<group>"; };
 		DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BaseLevel.sks; sourceTree = "<group>"; };
 		DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		DCEAA40122EAF6C100DD49EE /* TitleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleState.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 				DCEAA40322EAF78800DD49EE /* PlayingState.swift */,
 				DCEAA40522EAF7A000DD49EE /* PauseState.swift */,
 				DCEAA40722EAF7BB00DD49EE /* GameOverState.swift */,
+				DC8DF8D922F0A79B0046592E /* CompletedState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -188,6 +195,8 @@
 				DCEAA40D22EB094300DD49EE /* PauseScene.sks */,
 				DCEAA40F22EB09B300DD49EE /* GameOverScene.sks */,
 				DCEAA42F22EDC63F00DD49EE /* GameOverScene.swift */,
+				DC8DF8D522F0A7000046592E /* CompletedScene.sks */,
+				DC8DF8D722F0A7540046592E /* CompletedScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCEAA41022EB09B300DD49EE /* GameOverScene.sks in Resources */,
+				DC8DF8D622F0A7000046592E /* CompletedScene.sks in Resources */,
 				DC41F69722E845640035401A /* Main.storyboard in Resources */,
 				DCEAA40E22EB094300DD49EE /* PauseScene.sks in Resources */,
 				DC41F68E22E845640035401A /* PlayingScene.sks in Resources */,
@@ -290,10 +300,12 @@
 				DC41F69422E845640035401A /* GameViewController.swift in Sources */,
 				DCEAA42C22ED8F8F00DD49EE /* PhysicsComponent.swift in Sources */,
 				DCEAA43C22EF63A900DD49EE /* PositionComponent.swift in Sources */,
+				DC8DF8DA22F0A79B0046592E /* CompletedState.swift in Sources */,
 				DCEAA44422F01D6400DD49EE /* DamagingComponent.swift in Sources */,
 				DCEAA42A22ED8E4D00DD49EE /* KillComponent.swift in Sources */,
 				DCEAA43022EDC63F00DD49EE /* GameOverScene.swift in Sources */,
 				DCEAA40822EAF7BB00DD49EE /* GameOverState.swift in Sources */,
+				DC8DF8D822F0A7540046592E /* CompletedScene.swift in Sources */,
 				DCEAA42822ED784C00DD49EE /* HorizontalInputComponent.swift in Sources */,
 				DCEAA40422EAF78800DD49EE /* PlayingState.swift in Sources */,
 				DC41F68C22E845640035401A /* AppDelegate.swift in Sources */,

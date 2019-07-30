@@ -34,6 +34,6 @@ class PlayingState : GKState {
     }
 
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == PauseState.self || stateClass == GameOverState.self || stateClass == TitleState.self
+        return stateClass == PauseState.self || stateClass == GameOverState.self || stateClass == TitleState.self  || stateClass == CompletedState.self
     }
 }

@@ -129,7 +129,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         }
         let killableComponents = Game.entityManager(forScene: self).system(for: KillableComponent.self).components
         if killableComponents.count == 0 {
-            Game.stateMachine.enter(GameOverState.self)
+            Game.stateMachine.enter(CompletedState.self)
         }
         Game.entityManager(forScene: self).update(deltaTime: deltaTime)
     }
