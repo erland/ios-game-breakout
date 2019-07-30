@@ -41,8 +41,8 @@ class VelocityComponent : BaseComponent {
             }else {
                 component.physicsBody.linearDamping = 0.0
             }
-            while sqrt(velocity.dx*velocity.dx+velocity.dy*velocity.dy) < 100 {
-                component.physicsBody.applyImpulse(velocity)
+            while sqrt(component.physicsBody.velocity.dx*component.physicsBody.velocity.dx+component.physicsBody.velocity.dy*component.physicsBody.velocity.dy) < 100 {
+                component.physicsBody.applyImpulse(component.physicsBody.velocity)
             }
         }
     }
