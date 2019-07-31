@@ -9,9 +9,9 @@
 import GameplayKit
 
 class Entity : GKEntity {
-    var managedBy: EntityManager
+    var managedBy: SceneManager
     
-    init(managedBy: EntityManager) {
+    init(managedBy: SceneManager) {
         self.managedBy = managedBy
         super.init()
     }

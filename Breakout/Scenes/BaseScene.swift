@@ -18,7 +18,7 @@ class BaseScene : SKScene {
     }
     
     func updateComponents(deltaTime: TimeInterval) {
-        for entity in Game.entityManager(forScene: self).entities {
+        for entity in Game.sceneManager(forScene: self).entities {
             entity.update(deltaTime: deltaTime)
         }
     }

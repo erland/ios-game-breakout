@@ -8,7 +8,7 @@
 
 import GameplayKit
 
-class EntityManager {
+class SceneManager {
     var entities : [GKEntity] = []
     var __entitiesToBeRemoved : [GKEntity] = []
     var systems : [GKComponentSystem<GKComponent>] = []

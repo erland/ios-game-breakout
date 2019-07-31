@@ -13,19 +13,19 @@ import GameplayKit
 class Game {
     static var sceneController : SceneController!
     static var stateMachine: GameStateMachine!
-    static var entityManagers: [SKScene:EntityManager] = [:]
+    static var sceneManager: [SKScene:SceneManager] = [:]
     
     init(sceneController: SceneController) {
         Game.stateMachine = GameStateMachine(sceneController: sceneController)
         Game.sceneController = sceneController
     }
     
-    static func entityManager(forScene scene: SKScene) -> EntityManager {
-        if let entityManager = entityManagers[scene] {
+    static func sceneManager(forScene scene: SKScene) -> SceneManager {
+        if let entityManager = sceneManager[scene] {
             return entityManager
         }else {
-            entityManagers[scene] = EntityManager()
-            return entityManagers[scene]!
+            sceneManager[scene] = SceneManager()
+            return sceneManager[scene]!
         }
     }
     

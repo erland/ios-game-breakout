@@ -1,5 +1,5 @@
 //
-//  DamageComponent.swift
+//  ScoreComponent.swift
 //  Breakout
 //
 //  Created by Erland Isaksson on 2019-07-30.
@@ -8,12 +8,11 @@
 
 import GameplayKit
 
-class KillableComponent : BaseComponent {
-    var life = 1
-    var sceneManager : SceneManager
+class ScoreComponent : BaseComponent {
+    let score : Int
     
-    init(sceneManager: SceneManager) {
-        self.sceneManager = sceneManager
+    init(score: Int) {
+        self.score = score
         super.init()
     }
     
@@ -25,13 +24,9 @@ class KillableComponent : BaseComponent {
         if let collisions = entity?.component(ofType: CollisionComponent.self) {
             for collidingEntity in collisions.collisions {
                 if collidingEntity.component(ofType: DamagingComponent.self) != nil {
-                    life = life - 1
+                    
                 }
             }
-        }
-
-        if life <= 0 {
-            sceneManager.scheduleRemoveEntity(self.entity!)
         }
     }
 }

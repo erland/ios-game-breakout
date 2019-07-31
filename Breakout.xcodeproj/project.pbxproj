@@ -17,6 +17,7 @@
 		DC8DF8D622F0A7000046592E /* CompletedScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DC8DF8D522F0A7000046592E /* CompletedScene.sks */; };
 		DC8DF8D822F0A7540046592E /* CompletedScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D722F0A7540046592E /* CompletedScene.swift */; };
 		DC8DF8DA22F0A79B0046592E /* CompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D922F0A79B0046592E /* CompletedState.swift */; };
+		DC8DF8DC22F0AEE20046592E /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */; };
 		DCEAA3FC22EAEF4900DD49EE /* BaseLevel.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */; };
 		DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */; };
 		DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA40122EAF6C100DD49EE /* TitleState.swift */; };
@@ -29,7 +30,7 @@
 		DCEAA41222EB0DE300DD49EE /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCEAA41122EB0DE300DD49EE /* TitleScene.sks */; };
 		DCEAA41622EB6BA800DD49EE /* TapEventComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41522EB6BA800DD49EE /* TapEventComponent.swift */; };
 		DCEAA41822EC25D300DD49EE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41722EC25D300DD49EE /* Game.swift */; };
-		DCEAA41A22EC27FB00DD49EE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41922EC27FB00DD49EE /* EntityManager.swift */; };
+		DCEAA41A22EC27FB00DD49EE /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41922EC27FB00DD49EE /* SceneManager.swift */; };
 		DCEAA41C22EC315B00DD49EE /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41B22EC315B00DD49EE /* TitleScene.swift */; };
 		DCEAA41E22EC35B700DD49EE /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA41D22EC35B700DD49EE /* PauseScene.swift */; };
 		DCEAA42122EC43E200DD49EE /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA42022EC43E200DD49EE /* ButtonFactory.swift */; };
@@ -62,6 +63,7 @@
 		DC8DF8D522F0A7000046592E /* CompletedScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CompletedScene.sks; sourceTree = "<group>"; };
 		DC8DF8D722F0A7540046592E /* CompletedScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedScene.swift; sourceTree = "<group>"; };
 		DC8DF8D922F0A79B0046592E /* CompletedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedState.swift; sourceTree = "<group>"; };
+		DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
 		DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BaseLevel.sks; sourceTree = "<group>"; };
 		DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		DCEAA40122EAF6C100DD49EE /* TitleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleState.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 		DCEAA41122EB0DE300DD49EE /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		DCEAA41522EB6BA800DD49EE /* TapEventComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapEventComponent.swift; sourceTree = "<group>"; };
 		DCEAA41722EC25D300DD49EE /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		DCEAA41922EC27FB00DD49EE /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
+		DCEAA41922EC27FB00DD49EE /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		DCEAA41B22EC315B00DD49EE /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		DCEAA41D22EC35B700DD49EE /* PauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
 		DCEAA42022EC43E200DD49EE /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
@@ -137,7 +139,7 @@
 				DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */,
 				DCEAA40B22EAFC9E00DD49EE /* SceneController.swift */,
 				DCEAA41722EC25D300DD49EE /* Game.swift */,
-				DCEAA41922EC27FB00DD49EE /* EntityManager.swift */,
+				DCEAA41922EC27FB00DD49EE /* SceneManager.swift */,
 				DCEAA44522F0394000DD49EE /* Entity.swift */,
 			);
 			path = Breakout;
@@ -170,6 +172,7 @@
 				DCEAA43F22EF669B00DD49EE /* HealthComponent.swift */,
 				DCEAA44122F01BAF00DD49EE /* KillableComponent.swift */,
 				DCEAA44322F01D6400DD49EE /* DamagingComponent.swift */,
+				DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -282,7 +285,7 @@
 				DCEAA44622F0394000DD49EE /* Entity.swift in Sources */,
 				DCEAA40622EAF7A000DD49EE /* PauseState.swift in Sources */,
 				DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */,
-				DCEAA41A22EC27FB00DD49EE /* EntityManager.swift in Sources */,
+				DCEAA41A22EC27FB00DD49EE /* SceneManager.swift in Sources */,
 				DCEAA41622EB6BA800DD49EE /* TapEventComponent.swift in Sources */,
 				DCEAA44222F01BAF00DD49EE /* KillableComponent.swift in Sources */,
 				DCEAA43E22EF646100DD49EE /* VelocityComponent.swift in Sources */,
@@ -308,6 +311,7 @@
 				DC8DF8D822F0A7540046592E /* CompletedScene.swift in Sources */,
 				DCEAA42822ED784C00DD49EE /* HorizontalInputComponent.swift in Sources */,
 				DCEAA40422EAF78800DD49EE /* PlayingState.swift in Sources */,
+				DC8DF8DC22F0AEE20046592E /* ScoreComponent.swift in Sources */,
 				DC41F68C22E845640035401A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,7 +23,7 @@ class CompletedScene: BaseScene {
     
     override func updateComponents(deltaTime: TimeInterval) {
         // Update components
-        Game.entityManager(forScene: self).system(for: TapEventComponent.self).update(deltaTime: deltaTime)
+        Game.sceneManager(forScene: self).system(for: TapEventComponent.self).update(deltaTime: deltaTime)
     }
     
 }

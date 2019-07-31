@@ -77,9 +77,9 @@ class GameViewController: UIViewController, SceneController {
         if let scene = currentScene() {
             let sceneLocation = scene.convertPoint(fromView: viewLocation)
             if let node = nodeAtLocation(touchLocation: sceneLocation, scene: scene) {
-                if let tapComponent = Game.entityManager(forScene: scene).component(forNode: node, ofType: TapEventComponent.self) {
+                if let tapComponent = Game.sceneManager(forScene: scene).component(forNode: node, ofType: TapEventComponent.self) {
                     tapComponent.tapped = true
-                }else if let tapComponent = Game.entityManager(forScene: scene).component(forNode: scene, ofType:
+                }else if let tapComponent = Game.sceneManager(forScene: scene).component(forNode: scene, ofType:
                     TapEventComponent.self) {
                     tapComponent.tapped = true
                 }
@@ -107,7 +107,7 @@ class GameViewController: UIViewController, SceneController {
                 return
             }
             let touchLocation = touch.location(in: scene)
-            for component in Game.entityManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
+            for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
                 
                 if component.dragOffset != nil {
                     component.dragPosition = touchLocation.x
@@ -118,7 +118,7 @@ class GameViewController: UIViewController, SceneController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let scene = currentScene() {
-            for component in Game.entityManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
+            for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
                 
                 component.dragOffset = nil
                 component.dragPosition = nil
@@ -127,7 +127,7 @@ class GameViewController: UIViewController, SceneController {
     }
     
     func horizontalInputComponentAtLocation(touchLocation: CGPoint, scene: SKScene) -> HorizontalInputComponent? {
-        for component in Game.entityManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
+        for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
             if let nodeComponent = component.entity!.component(ofType: VisualComponent.self) {
                 if CGRect(x: nodeComponent.node.position.x-component.dragAreaWidth/2,
                           y: nodeComponent.node.position.y-component.dragAreaHeight/2,
