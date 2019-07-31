@@ -15,7 +15,7 @@ class CompletedScene: BaseScene {
         super.sceneDidLoad()
         
         ButtonFactory(self).addSceneButton {
-            Game.stateMachine.enter(PlayingState.self)
+            Game.stateMachine.enter(LoadLevelState.self)
         }
         
         print("Scene did load: \(type(of: self))")

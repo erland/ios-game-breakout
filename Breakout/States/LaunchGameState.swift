@@ -1,14 +1,14 @@
 //
-//  TitleState.swift
+//  LaunchGame.swift
 //  Breakout
 //
-//  Created by Erland Isaksson on 2019-07-26.
+//  Created by Erland Isaksson on 2019-07-31.
 //  Copyright © 2019 Erland Isaksson. All rights reserved.
 //
 
 import GameplayKit
 
-class TitleState : GKState {
+class LaunchGameState : GKState {
     let sceneController: SceneController
     
     init(sceneController: SceneController) {
@@ -16,12 +16,12 @@ class TitleState : GKState {
     }
     
     override func didEnter(from previousState: GKState?) {
-        if let scene = GKScene(fileNamed: "TitleScene") {
+        if let scene = GKScene(fileNamed: "PlayingScene") {
             
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! SKScene? {
                 if sceneController.presentScene(sceneNode) {
-                    // Success
+                    stateMachine?.enter(LoadLevelState.self)
                     return
                 }
             }
@@ -29,6 +29,6 @@ class TitleState : GKState {
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == LaunchGameState.self
+        return stateClass == LoadLevelState.self
     }
 }

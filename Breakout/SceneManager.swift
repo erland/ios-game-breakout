@@ -18,8 +18,10 @@ class SceneManager {
         entities.append(entity)
     }
     
-    func scheduleRemoveEntity(_ entity: GKEntity) {
-        __entitiesToBeRemoved.append(entity)
+    func scheduleRemoveEntity(_ entity: GKEntity?) {
+        if let entity = entity {
+            __entitiesToBeRemoved.append(entity)
+        }
     }
     
     func removeEntity(_ entity: GKEntity) {

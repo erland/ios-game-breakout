@@ -19,14 +19,17 @@ class CompletedState : GKState {
         if let scene = GKScene(fileNamed: "CompletedScene") {
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! SKScene? {
-                if sceneController.presentScene(sceneNode) {
+                if sceneController.setOverlayScene(sceneNode) {
                     // Success
                     return
                 }
             }
         }
     }
+    override func willExit(to nextState: GKState) {
+        _ = sceneController.clearOverlayScene()
+    }
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == PlayingState.self
+        return stateClass == LoadLevelState.self
     }
 }

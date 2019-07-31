@@ -22,6 +22,10 @@
 		DC8DF8E522F179290046592E /* ScoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E422F179290046592E /* ScoreEvent.swift */; };
 		DC8DF8E722F17D7B0046592E /* HudDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E622F17D7B0046592E /* HudDisplay.swift */; };
 		DC8DF8E922F17EFC0046592E /* LifeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E822F17EFC0046592E /* LifeEvent.swift */; };
+		DC8DF8F122F1A8AE0046592E /* LaunchGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8F022F1A8AE0046592E /* LaunchGameState.swift */; };
+		DC8DF8F322F1A8CC0046592E /* LoadLevelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8F222F1A8CC0046592E /* LoadLevelState.swift */; };
+		DC8DF8F522F1A8E40046592E /* PlaceBallState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8F422F1A8E40046592E /* PlaceBallState.swift */; };
+		DC8DF8F722F1EE300046592E /* FollowNodeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8F622F1EE300046592E /* FollowNodeComponent.swift */; };
 		DCEAA3FC22EAEF4900DD49EE /* BaseLevel.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */; };
 		DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */; };
 		DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA40122EAF6C100DD49EE /* TitleState.swift */; };
@@ -72,6 +76,10 @@
 		DC8DF8E422F179290046592E /* ScoreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEvent.swift; sourceTree = "<group>"; };
 		DC8DF8E622F17D7B0046592E /* HudDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudDisplay.swift; sourceTree = "<group>"; };
 		DC8DF8E822F17EFC0046592E /* LifeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEvent.swift; sourceTree = "<group>"; };
+		DC8DF8F022F1A8AE0046592E /* LaunchGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchGameState.swift; sourceTree = "<group>"; };
+		DC8DF8F222F1A8CC0046592E /* LoadLevelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLevelState.swift; sourceTree = "<group>"; };
+		DC8DF8F422F1A8E40046592E /* PlaceBallState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBallState.swift; sourceTree = "<group>"; };
+		DC8DF8F622F1EE300046592E /* FollowNodeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowNodeComponent.swift; sourceTree = "<group>"; };
 		DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BaseLevel.sks; sourceTree = "<group>"; };
 		DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		DCEAA40122EAF6C100DD49EE /* TitleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleState.swift; sourceTree = "<group>"; };
@@ -173,6 +181,9 @@
 				DCEAA40522EAF7A000DD49EE /* PauseState.swift */,
 				DCEAA40722EAF7BB00DD49EE /* GameOverState.swift */,
 				DC8DF8D922F0A79B0046592E /* CompletedState.swift */,
+				DC8DF8F022F1A8AE0046592E /* LaunchGameState.swift */,
+				DC8DF8F222F1A8CC0046592E /* LoadLevelState.swift */,
+				DC8DF8F422F1A8E40046592E /* PlaceBallState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -193,6 +204,7 @@
 				DCEAA44122F01BAF00DD49EE /* KillableComponent.swift */,
 				DCEAA44322F01D6400DD49EE /* DamagingComponent.swift */,
 				DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */,
+				DC8DF8F622F1EE300046592E /* FollowNodeComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -305,6 +317,7 @@
 				DC41F69222E845640035401A /* PlayingScene.swift in Sources */,
 				DCEAA44622F0394000DD49EE /* Entity.swift in Sources */,
 				DCEAA40622EAF7A000DD49EE /* PauseState.swift in Sources */,
+				DC8DF8F322F1A8CC0046592E /* LoadLevelState.swift in Sources */,
 				DCEAA44022EF669B00DD49EE /* HealthComponent.swift in Sources */,
 				DCEAA41A22EC27FB00DD49EE /* SceneManager.swift in Sources */,
 				DCEAA41622EB6BA800DD49EE /* TapEventComponent.swift in Sources */,
@@ -322,8 +335,10 @@
 				DC8DF8E922F17EFC0046592E /* LifeEvent.swift in Sources */,
 				DCEAA41822EC25D300DD49EE /* Game.swift in Sources */,
 				DCEAA43A22EF5FD100DD49EE /* BaseComponent.swift in Sources */,
+				DC8DF8F722F1EE300046592E /* FollowNodeComponent.swift in Sources */,
 				DCEAA41C22EC315B00DD49EE /* TitleScene.swift in Sources */,
 				DCEAA43822EEFB7200DD49EE /* VisualComponent.swift in Sources */,
+				DC8DF8F522F1A8E40046592E /* PlaceBallState.swift in Sources */,
 				DC41F69422E845640035401A /* GameViewController.swift in Sources */,
 				DCEAA42C22ED8F8F00DD49EE /* PhysicsComponent.swift in Sources */,
 				DCEAA43C22EF63A900DD49EE /* PositionComponent.swift in Sources */,
@@ -336,6 +351,7 @@
 				DCEAA42822ED784C00DD49EE /* HorizontalInputComponent.swift in Sources */,
 				DCEAA40422EAF78800DD49EE /* PlayingState.swift in Sources */,
 				DC8DF8DC22F0AEE20046592E /* ScoreComponent.swift in Sources */,
+				DC8DF8F122F1A8AE0046592E /* LaunchGameState.swift in Sources */,
 				DC41F68C22E845640035401A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

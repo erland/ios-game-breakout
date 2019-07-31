@@ -25,6 +25,13 @@ class VelocityComponent : BaseComponent {
             component.physicsBody.applyImpulse(velocity)
         }
     }
+    
+    override func willRemoveFromEntity() {
+        if let component = entity?.component(ofType: PhysicsComponent.self) {
+            component.physicsBody.velocity = CGVector.zero
+        }
+    }
+    
     override func update(deltaTime seconds: TimeInterval) {
         if let component = entity?.component(ofType: PhysicsComponent.self) {
             velocity = component.physicsBody.velocity

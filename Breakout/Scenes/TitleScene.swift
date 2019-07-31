@@ -15,7 +15,7 @@ class TitleScene: BaseScene {
         super.sceneDidLoad()
 
         ButtonFactory(self).addSceneButton {
-            Game.stateMachine.enter(PlayingState.self)
+            Game.stateMachine.enter(LaunchGameState.self)
         }
         
         print("Scene did load: \(type(of: self))")

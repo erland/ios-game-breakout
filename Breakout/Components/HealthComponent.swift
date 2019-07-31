@@ -26,7 +26,17 @@ class HealthComponent : BaseComponent {
     
     override func update(deltaTime seconds: TimeInterval) {
         if health<=0 {
-            Game.stateMachine.enter(GameOverState.self)
+            sceneManager?.scheduleRemoveEntity(entity)
+            var lostLife = true
+            for component in sceneManager!.components(ofType: HealthComponent.self) {
+                if component.health>0 {
+                    lostLife = false
+                    break
+                }
+            }
+            if lostLife {
+                sceneManager?.issueEvent(event: LifeEvent(entity: entity, lifeChange: -1))
+            }
         }
     }
 }
