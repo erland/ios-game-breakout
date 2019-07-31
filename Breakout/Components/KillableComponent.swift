@@ -10,16 +10,6 @@ import GameplayKit
 
 class KillableComponent : BaseComponent {
     var life = 1
-    var sceneManager : SceneManager
-    
-    init(sceneManager: SceneManager) {
-        self.sceneManager = sceneManager
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func update(deltaTime seconds: TimeInterval) {
         if let collisions = entity?.component(ofType: CollisionComponent.self) {
@@ -31,7 +21,7 @@ class KillableComponent : BaseComponent {
         }
 
         if life <= 0 {
-            sceneManager.scheduleRemoveEntity(self.entity!)
+            sceneManager?.scheduleRemoveEntity(self.entity!)
         }
     }
 }

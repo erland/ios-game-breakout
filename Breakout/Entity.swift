@@ -23,6 +23,9 @@ class Entity : GKEntity {
     override func addComponent(_ component: GKComponent) {
         super.addComponent(component)
         managedBy.addComponentToSystems(component)
+        if let component = component as? BaseComponent {
+            component.sceneManager = managedBy
+        }
     }
     
     override func __removeComponent(for componentClass: AnyClass) {

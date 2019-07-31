@@ -24,7 +24,7 @@ class ScoreComponent : BaseComponent {
         if let collisions = entity?.component(ofType: CollisionComponent.self) {
             for collidingEntity in collisions.collisions {
                 if collidingEntity.component(ofType: DamagingComponent.self) != nil {
-                    
+                    sceneManager?.issueEvent(event: ScoreEvent(entity: entity, score: score))
                 }
             }
         }

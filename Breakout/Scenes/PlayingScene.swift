@@ -11,6 +11,7 @@ import GameplayKit
 
 class PlayingScene: BaseScene, SKPhysicsContactDelegate {
     var lastCollision : GKEntity?
+    var hudDisplay : HudDisplay?
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -22,6 +23,12 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         ButtonFactory(self).addButton(withName: "pause") {
             Game.stateMachine.enter(PauseState.self)
         }
+        
+        hudDisplay = HudDisplay(sceneManager: Game.sceneManager(forScene: self),
+                                score: 0,
+                                lives: 1,
+                                scoreLabel: childNode(withName: "//score") as? SKLabelNode,
+                                livesLabel: childNode(withName: "//lives") as? SKLabelNode)
         
         if let node = childNode(withName: "//Bat") {
             let entity = Game.sceneManager(forScene: self).entity(forNode: node)
@@ -87,7 +94,8 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
                                                      contactTestBitMask: 4))
                 entity.addComponent(PositionComponent(position: CGPoint(x: -240+x*60, y: 240-y*30)))
                 entity.addComponent(CollisionComponent())
-                entity.addComponent(KillableComponent(sceneManager: Game.sceneManager(forScene: self)))
+                entity.addComponent(KillableComponent())
+                entity.addComponent(ScoreComponent(score: 1))
             }
         }
         physicsWorld.contactDelegate = self
@@ -117,6 +125,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         Game.sceneManager(forScene: self).system(for: PositionComponent.self).update(deltaTime: deltaTime)
         Game.sceneManager(forScene: self).system(for: VelocityComponent.self).update(deltaTime: deltaTime)
         Game.sceneManager(forScene: self).system(for: CollisionComponent.self).update(deltaTime: deltaTime)
+        hudDisplay?.update(deltaTime: deltaTime)
         let healthComponents = Game.sceneManager(forScene: self).system(for: HealthComponent.self).components
         var dead = true
         for component in healthComponents {

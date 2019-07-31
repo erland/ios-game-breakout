@@ -18,6 +18,10 @@
 		DC8DF8D822F0A7540046592E /* CompletedScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D722F0A7540046592E /* CompletedScene.swift */; };
 		DC8DF8DA22F0A79B0046592E /* CompletedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8D922F0A79B0046592E /* CompletedState.swift */; };
 		DC8DF8DC22F0AEE20046592E /* ScoreComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */; };
+		DC8DF8E322F179110046592E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E222F179110046592E /* Event.swift */; };
+		DC8DF8E522F179290046592E /* ScoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E422F179290046592E /* ScoreEvent.swift */; };
+		DC8DF8E722F17D7B0046592E /* HudDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E622F17D7B0046592E /* HudDisplay.swift */; };
+		DC8DF8E922F17EFC0046592E /* LifeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DF8E822F17EFC0046592E /* LifeEvent.swift */; };
 		DCEAA3FC22EAEF4900DD49EE /* BaseLevel.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */; };
 		DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */; };
 		DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAA40122EAF6C100DD49EE /* TitleState.swift */; };
@@ -64,6 +68,10 @@
 		DC8DF8D722F0A7540046592E /* CompletedScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedScene.swift; sourceTree = "<group>"; };
 		DC8DF8D922F0A79B0046592E /* CompletedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedState.swift; sourceTree = "<group>"; };
 		DC8DF8DB22F0AEE20046592E /* ScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreComponent.swift; sourceTree = "<group>"; };
+		DC8DF8E222F179110046592E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		DC8DF8E422F179290046592E /* ScoreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEvent.swift; sourceTree = "<group>"; };
+		DC8DF8E622F17D7B0046592E /* HudDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudDisplay.swift; sourceTree = "<group>"; };
+		DC8DF8E822F17EFC0046592E /* LifeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeEvent.swift; sourceTree = "<group>"; };
 		DCEAA3FB22EAEF4900DD49EE /* BaseLevel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BaseLevel.sks; sourceTree = "<group>"; };
 		DCEAA3FF22EAF64C00DD49EE /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		DCEAA40122EAF6C100DD49EE /* TitleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleState.swift; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 		DC41F68A22E845640035401A /* Breakout */ = {
 			isa = PBXGroup;
 			children = (
+				DC8DF8E122F179040046592E /* Events */,
 				DCEAA42622ED768800DD49EE /* Scenes */,
 				DCEAA41F22EC43D100DD49EE /* Factories */,
 				DCEAA41422EB675400DD49EE /* Components */,
@@ -141,8 +150,19 @@
 				DCEAA41722EC25D300DD49EE /* Game.swift */,
 				DCEAA41922EC27FB00DD49EE /* SceneManager.swift */,
 				DCEAA44522F0394000DD49EE /* Entity.swift */,
+				DC8DF8E622F17D7B0046592E /* HudDisplay.swift */,
 			);
 			path = Breakout;
+			sourceTree = "<group>";
+		};
+		DC8DF8E122F179040046592E /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				DC8DF8E222F179110046592E /* Event.swift */,
+				DC8DF8E422F179290046592E /* ScoreEvent.swift */,
+				DC8DF8E822F17EFC0046592E /* LifeEvent.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		DCEAA41322EB66C000DD49EE /* States */ = {
@@ -281,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC8DF8E522F179290046592E /* ScoreEvent.swift in Sources */,
 				DC41F69222E845640035401A /* PlayingScene.swift in Sources */,
 				DCEAA44622F0394000DD49EE /* Entity.swift in Sources */,
 				DCEAA40622EAF7A000DD49EE /* PauseState.swift in Sources */,
@@ -289,13 +310,16 @@
 				DCEAA41622EB6BA800DD49EE /* TapEventComponent.swift in Sources */,
 				DCEAA44222F01BAF00DD49EE /* KillableComponent.swift in Sources */,
 				DCEAA43E22EF646100DD49EE /* VelocityComponent.swift in Sources */,
+				DC8DF8E322F179110046592E /* Event.swift in Sources */,
 				DCEAA43222EED5A100DD49EE /* CollisionComponent.swift in Sources */,
 				DCEAA40C22EAFC9E00DD49EE /* SceneController.swift in Sources */,
 				DCEAA40222EAF6C100DD49EE /* TitleState.swift in Sources */,
+				DC8DF8E722F17D7B0046592E /* HudDisplay.swift in Sources */,
 				DCEAA42522EC48C900DD49EE /* BaseScene.swift in Sources */,
 				DCEAA42122EC43E200DD49EE /* ButtonFactory.swift in Sources */,
 				DCEAA40022EAF64C00DD49EE /* GameStateMachine.swift in Sources */,
 				DCEAA41E22EC35B700DD49EE /* PauseScene.swift in Sources */,
+				DC8DF8E922F17EFC0046592E /* LifeEvent.swift in Sources */,
 				DCEAA41822EC25D300DD49EE /* Game.swift in Sources */,
 				DCEAA43A22EF5FD100DD49EE /* BaseComponent.swift in Sources */,
 				DCEAA41C22EC315B00DD49EE /* TitleScene.swift in Sources */,

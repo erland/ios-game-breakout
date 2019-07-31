@@ -12,6 +12,7 @@ class SceneManager {
     var entities : [GKEntity] = []
     var __entitiesToBeRemoved : [GKEntity] = []
     var systems : [GKComponentSystem<GKComponent>] = []
+    var events : [Event] = []
 
     func addEntity(_ entity: GKEntity) {
         entities.append(entity)
@@ -89,10 +90,37 @@ class SceneManager {
         return result
     }
     
+    func issueEvent(event: Event) {
+        events.append(event)
+    }
+    
+    func events<T : Event>(ofType eventType: T.Type) -> [T] {
+        var result : [T] = []
+        for event in events {
+            if let event = event as? T {
+                result.append(event)
+            }
+        }
+        return result
+    }
+
+    func events<T : Event>(fromEntity entity: GKEntity, ofType eventType: T.Type) -> [T] {
+        var result : [T] = []
+        for event in events {
+            if event.entity === entity {
+                if let event = event as? T {
+                    result.append(event)
+                }
+            }
+        }
+        return result
+    }
+
     func update(deltaTime: TimeInterval) {
         for entity in __entitiesToBeRemoved {
             removeEntity(entity)
         }
         __entitiesToBeRemoved.removeAll()
+        events.removeAll()
     }
 }

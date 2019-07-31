@@ -9,4 +9,5 @@
 import GameplayKit
 
 class BaseComponent : GKComponent {
+    var sceneManager: SceneManager?
 }
