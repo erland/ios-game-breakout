@@ -9,8 +9,16 @@
 import GameplayKit
 
 class KillableComponent : BaseComponent {
-    var life = 1
+    var life: Int
     
+    init(life: Int) {
+        self.life = life
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func update(deltaTime seconds: TimeInterval) {
         if let collisions = entity?.component(ofType: CollisionComponent.self) {
             for collidingEntity in collisions.collisions {

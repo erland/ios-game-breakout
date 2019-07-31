@@ -132,7 +132,11 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
                                                      contactTestBitMask: 4))
                 entity.addComponent(PositionComponent(position: CGPoint(x: -240+x*60, y: 240-y*30)))
                 entity.addComponent(CollisionComponent())
-                entity.addComponent(KillableComponent())
+                if brickNode.color == .blue {
+                    entity.addComponent(KillableComponent(life: 2))
+                }else {
+                    entity.addComponent(KillableComponent(life: 1))
+                }
                 entity.addComponent(ScoreComponent(score: 1))
             }
         }
