@@ -77,7 +77,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     func placeBall() {
-        let ballNode = SKSpriteNode(texture: nil, color: .green, size: CGSize(width: 30, height: 30))
+        let ballNode = SKSpriteNode(texture: nil, color: .green, size: CGSize(width: 25, height: 25))
         ballNode.name = "Ball"
         addChild(ballNode)
 
@@ -87,10 +87,10 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         if let batNode = childNode(withName: "//Bat") {
             
             entity.addComponent(PositionComponent(position: CGPoint(x: batNode.position.x,
-                                                                    y: batNode.position.y+80)))
+                                                                    y: batNode.position.y+40)))
             entity.addComponent(HealthComponent(health: 1))
             entity.addComponent(DamagingComponent())
-            entity.addComponent(FollowNodeComponent(node: batNode, offset: CGPoint(x: 0, y: 80)))
+            entity.addComponent(FollowNodeComponent(node: batNode, offset: CGPoint(x: 0, y: 40)))
         }
     }
     
@@ -119,9 +119,11 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
             }
         }
         
-        for y in 0..<3 {
-            for x in 0..<8 {
-                let brickNode = SKSpriteNode(texture: nil, color: ((y+x)%2 == 1) ? .red : .blue, size: CGSize(width: 56, height: 26))
+        let rows = 11
+        let columns = 11
+        for y in 0..<rows {
+            for x in 0..<columns {
+                let brickNode = SKSpriteNode(texture: nil, color: ((y+x)%2 == 1) ? .red : .blue, size: CGSize(width: 46, height: 21))
                 brickNode.name = "LevelData"
                 addChild(brickNode)
                 let entity = Game.sceneManager(forScene: self).entity(forNode: brickNode)
@@ -130,7 +132,7 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
                                                      collisionBitMask: 8,
                                                      categoryBitMask: 12,
                                                      contactTestBitMask: 4))
-                entity.addComponent(PositionComponent(position: CGPoint(x: -240+x*60, y: 240-y*30)))
+                entity.addComponent(PositionComponent(position: CGPoint(x: -(columns*50/2)+x*50+25, y: 240-y*25)))
                 entity.addComponent(CollisionComponent())
                 if brickNode.color == .blue {
                     entity.addComponent(KillableComponent(life: 2))
