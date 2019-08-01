@@ -17,7 +17,8 @@ class GameStateMachine : GKStateMachine {
                             PlaceBallState(sceneController: sceneController),
                             PlayingState(sceneController: sceneController),
                             PauseState(sceneController: sceneController),
-                            CompletedState(sceneController: sceneController),
+                            LevelCompletedState(sceneController: sceneController),
+                            GameCompletedState(sceneController: sceneController),
                             GameOverState(sceneController: sceneController)])
     }
     

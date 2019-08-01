@@ -1,14 +1,14 @@
 //
-//  CompletedState.swift
+//  GameCompletedState.swift
 //  Breakout
 //
-//  Created by Erland Isaksson on 2019-07-30.
+//  Created by Erland Isaksson on 2019-08-01.
 //  Copyright © 2019 Erland Isaksson. All rights reserved.
 //
 
 import GameplayKit
 
-class CompletedState : GKState {
+class GameCompletedState : GKState {
     let sceneController: SceneController
     
     init(sceneController: SceneController) {
@@ -16,20 +16,17 @@ class CompletedState : GKState {
     }
     
     override func didEnter(from previousState: GKState?) {
-        if let scene = GKScene(fileNamed: "CompletedScene") {
+        if let scene = GKScene(fileNamed: "GameCompletedScene") {
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! SKScene? {
-                if sceneController.setOverlayScene(sceneNode) {
+                if sceneController.presentScene(sceneNode) {
                     // Success
                     return
                 }
             }
         }
     }
-    override func willExit(to nextState: GKState) {
-        _ = sceneController.clearOverlayScene()
-    }
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == LoadLevelState.self
+        return stateClass == TitleState.self
     }
 }

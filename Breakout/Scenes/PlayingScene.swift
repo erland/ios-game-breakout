@@ -35,8 +35,10 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
         hudDisplay = HudDisplay(sceneManager: Game.sceneManager(forScene: self),
                                 score: 0,
                                 lives: 3,
+                                level: 1,
                                 scoreLabel: childNode(withName: "//score") as? SKLabelNode,
-                                livesLabel: childNode(withName: "//lives") as? SKLabelNode)
+                                livesLabel: childNode(withName: "//lives") as? SKLabelNode,
+                                levelLabel: childNode(withName: "//level") as? SKLabelNode)
         
         if let node = childNode(withName: "//Bat") {
             let entity = Game.sceneManager(forScene: self).entity(forNode: node)
@@ -119,28 +121,17 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
             }
         }
         
-        let rows = 11
-        let columns = 11
-        for y in 0..<rows {
-            for x in 0..<columns {
-                let brickNode = SKSpriteNode(texture: nil, color: ((y+x)%2 == 1) ? .red : .blue, size: CGSize(width: 46, height: 21))
-                brickNode.name = "LevelData"
-                addChild(brickNode)
-                let entity = Game.sceneManager(forScene: self).entity(forNode: brickNode)
-                entity.addComponent(PhysicsComponent(physicsBody: SKPhysicsBody(rectangleOf: brickNode.frame.size),
-                                                     isDynamic: false,
-                                                     collisionBitMask: 8,
-                                                     categoryBitMask: 12,
-                                                     contactTestBitMask: 4))
-                entity.addComponent(PositionComponent(position: CGPoint(x: -(columns*50/2)+x*50+25, y: 240-y*25)))
-                entity.addComponent(CollisionComponent())
-                if brickNode.color == .blue {
-                    entity.addComponent(KillableComponent(life: 2))
-                }else {
-                    entity.addComponent(KillableComponent(life: 1))
+        let levelEntities = LevelFactory(scene: self).getLevel(levelNo: hudDisplay!.level)
+        if let entities = levelEntities {
+            for entity in entities {
+                if let node = entity.component(ofType: VisualComponent.self) ?? entity.component(ofType: GKSKNodeComponent.self){
+                    node.node.name = "LevelData"
+                    addChild(node.node)
                 }
-                entity.addComponent(ScoreComponent(score: 1))
+                Game.sceneManager(forScene: self).addEntity(entity)
             }
+        }else {
+            Game.stateMachine.enter(GameCompletedState.self)
         }
     }
     
@@ -184,7 +175,8 @@ class PlayingScene: BaseScene, SKPhysicsContactDelegate {
             for component in Game.sceneManager(forScene: self).components(ofType: HealthComponent.self) {
                 Game.sceneManager(forScene: self).scheduleRemoveEntity(component.entity)
             }
-            Game.stateMachine.enter(CompletedState.self)
+            Game.stateMachine.enter(LevelCompletedState.self)
+            hudDisplay!.level = hudDisplay!.level + 1
         }
         Game.sceneManager(forScene: self).update(deltaTime: deltaTime)
     }

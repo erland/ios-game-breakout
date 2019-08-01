@@ -24,7 +24,7 @@ class LoadLevelState : GKState {
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == PlaceBallState.self
+        return stateClass == PlaceBallState.self || stateClass == GameCompletedState.self
     }
 }
 

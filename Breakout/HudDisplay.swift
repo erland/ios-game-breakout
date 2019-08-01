@@ -14,13 +14,17 @@ class HudDisplay {
     var score : Int = 0
     let livesLabel : SKLabelNode?
     var lives : Int = 0
+    let levelLabel : SKLabelNode?
+    var level : Int = 0
     
-    init(sceneManager: SceneManager, score: Int, lives: Int, scoreLabel: SKLabelNode?, livesLabel: SKLabelNode?) {
+    init(sceneManager: SceneManager, score: Int, lives: Int, level: Int, scoreLabel: SKLabelNode?, livesLabel: SKLabelNode?, levelLabel: SKLabelNode?) {
         self.sceneManager = sceneManager
         self.scoreLabel = scoreLabel
         self.livesLabel = livesLabel
+        self.levelLabel = levelLabel
         self.score = score
         self.lives = lives
+        self.level = level
     }
     
     func update(deltaTime: TimeInterval) {
@@ -32,5 +36,6 @@ class HudDisplay {
         }
         scoreLabel?.text = "\(score)"
         livesLabel?.text = "\(lives)"
+        levelLabel?.text = "\(level)"
     }
 }

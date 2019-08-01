@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class CompletedScene: BaseScene {
+class LevelCompletedScene: BaseScene {
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
