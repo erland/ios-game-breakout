@@ -9,11 +9,13 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GameController
 
-class GameViewController: UIViewController, SceneController {
+class GameViewController: UIViewController, SceneController, ReactToMotionEvents, ReactToTouchEvents {
     
     var activeScene : SKScene?
     var activeOverlay : SKScene?
+    var touchReleased : Date?
     
     func currentScene() -> SKScene? {
         if activeOverlay != nil {
@@ -66,7 +68,13 @@ class GameViewController: UIViewController, SceneController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        #if os (tvOS)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.motionDelegate = self
+        appDelegate.touchDelegate = self
+        #endif
+
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapInView))
         view.addGestureRecognizer(recognizer)
         Game.stateMachine.enter(TitleState.self)
@@ -126,6 +134,47 @@ class GameViewController: UIViewController, SceneController {
         }
     }
     
+    func motionUpdate(_ motion: GCMotion) {
+        if let scene = currentScene() {
+            if touchReleased != nil && touchReleased!.timeIntervalSinceNow < -1 {
+                for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
+                    if component.dragPosition == nil {
+                        component.dragPosition = 0
+                    }
+                    component.dragPosition = component.dragPosition! + CGFloat(motion.rotationRate.x*7)
+                    if component.dragPosition! < -300 {
+                        component.dragPosition = -300
+                    }
+                    if component.dragPosition! > 300 {
+                        component.dragPosition = 300
+                    }
+                }
+            }
+        }
+    }
+    
+    func touchUpdate(x: Float, y: Float) {
+        if let scene = currentScene() {
+            if x==0 && y==0 {
+                touchReleased = Date()
+            }else {
+                touchReleased = nil
+            }
+            for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
+                if component.dragPosition == nil {
+                    component.dragPosition = 0
+                }
+                component.dragPosition = CGFloat(x*300)
+                if component.dragPosition! < -300 {
+                    component.dragPosition = -300
+                }
+                if component.dragPosition! > 300 {
+                    component.dragPosition = 300
+                }
+            }
+        }
+
+    }
     func horizontalInputComponentAtLocation(touchLocation: CGPoint, scene: SKScene) -> HorizontalInputComponent? {
         for component in Game.sceneManager(forScene: scene).components(ofType: HorizontalInputComponent.self) {
             if let nodeComponent = component.entity!.component(ofType: VisualComponent.self) {
@@ -154,6 +203,7 @@ class GameViewController: UIViewController, SceneController {
         return nil
     }
     
+#if os (iOS)
     override var shouldAutorotate: Bool {
         return true
     }
@@ -165,5 +215,6 @@ class GameViewController: UIViewController, SceneController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+#endif
     
 }
